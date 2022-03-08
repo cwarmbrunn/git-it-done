@@ -10,6 +10,9 @@ var formSubmitHandler = function (event) {
 
   if (username) {
     getUserRepos(username);
+
+    // clear old content
+    repoContainerEl.textContent = "";
     nameInputEl.value = "";
   } else {
     alert("Please enter a GitHub username");
@@ -21,7 +24,6 @@ var displayRepos = function (repos, searchTerm) {
     repoContainerEl.textContent = "No repositories found.";
     return;
   }
-  repoContainerEl.textContent = "";
   repoSearchTerm.textContent = searchTerm;
 
   for (var i = 0; i < repos.length; i++) {
@@ -74,7 +76,7 @@ var getUserRepos = function (user) {
         alert("Error: GitHub User Not Found!");
       }
     })
-    .catch(function(error) {
+    .catch(function (error) {
       alert("Unable to connect to GitHub");
     });
 };
